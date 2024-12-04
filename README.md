@@ -122,8 +122,9 @@ Throughout the script, appropriate error handling is performed. If any error occ
 1. **Fetching Balances**: The script fetches the balance of the specified token (USDC) for the Ethereum wallet address.
 2. **Generating Call Data**: It generates the contract call data needed to mint or transfer tokens.
 3. **Fetching Deposit Address**: The deposit address is fetched from Aarc Core using the contract call data.
-4. **Executing Transaction**: The transaction is sent to the Ethereum network for execution.
-5. **Completion**: The script logs the transaction hash upon successful execution.
+4. **Executing Transaction**: The transaction is sent to the network for execution.
+5. **Request Polling**: Poll the request id to get the tx status.
+6. **Completion**: The script logs the transaction hash and polling status upon successful execution.
 
 ### **Transaction Execution Disabled**
 
