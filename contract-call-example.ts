@@ -7,6 +7,7 @@ import {
   TransferType,
 } from "@aarc-xyz/core-viem";
 import { ethers } from "ethers";
+import { pollTransactionStatus } from "./polling-example.js";
 
 // Load environment variables
 config();
@@ -21,7 +22,9 @@ if (!API_KEY || !PRIVATE_KEY || !RPC_URL) {
 }
 
 const aarcCoreSDK = new AarcCore(API_KEY);
-const walletProvider = ethers.getDefaultProvider("https://base-rpc.publicnode.com");
+const walletProvider = ethers.getDefaultProvider(
+  "https://base-rpc.publicnode.com"
+);
 const wallet = new ethers.Wallet(PRIVATE_KEY, walletProvider);
 
 const requestedAmount = "0.01";
@@ -197,7 +200,9 @@ async function executeTransaction(
     };
 
     //TODO: REMOVE WHEN TESTING ACTUAL TX
-    throw new Error("Transaction execution is disabled for now, Please remove this line to execute the transaction");
+    throw new Error(
+      "Transaction execution is disabled for now, Please remove this line to execute the transaction"
+    );
     const txResponse = await wallet.sendTransaction(tx);
     console.log("Transaction hash:", txResponse.hash);
 
@@ -252,6 +257,9 @@ async function main() {
     const trxHash = await executeTransaction(depositData);
 
     console.log("Transaction completed with hash:", trxHash);
+
+    const pollingResult = await pollTransactionStatus(depositData.requestId);
+    console.log("Polling result:", pollingResult);
   } catch (error) {
     console.error("Error in main execution:", error);
   }

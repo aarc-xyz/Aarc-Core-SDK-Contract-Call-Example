@@ -1,6 +1,7 @@
 import { config } from "dotenv";
 import { AarcCore, TransferType, } from "@aarc-xyz/core-viem";
 import { ethers } from "ethers";
+import { pollTransactionStatus } from "./polling-example.js";
 // Load environment variables
 config();
 const API_KEY = process.env.API_KEY;
@@ -20,7 +21,6 @@ const destinationToken = {
     chainId: 8453,
     address: "0x833589fcd6edb6e08f4c7c32d4f71b54bda02913",
 };
-
 // Helper function to fetch multichain balances
 async function getMultichainBalance(address) {
     try {
@@ -124,10 +124,10 @@ async function executeTransaction(depositData) {
             chainId: Number(depositData.txData.chainId),
         };
         //TODO: REMOVE WHEN TESTING ACTUAL TX
-        // throw new Error("Transaction execution is disabled for now, Please remove this line to execute the transaction");
+        throw new Error("Transaction execution is disabled for now, Please remove this line to execute the transaction");
         const txResponse = await wallet.sendTransaction(tx);
         console.log("Transaction hash:", txResponse.hash);
-        // Notify Aarc about the transaction hash
+        // Notify Aarc about the transaction hash (this is optional, but recommended to get the status of the transaction faster)
         await aarcCoreSDK.postExecuteToAddress({
             depositData,
             trxHash: txResponse.hash,
@@ -166,6 +166,8 @@ async function main() {
         console.log("Executing transaction...");
         const trxHash = await executeTransaction(depositData);
         console.log("Transaction completed with hash:", trxHash);
+        const pollingResult = await pollTransactionStatus(depositData.requestId);
+        console.log("Polling result:", pollingResult);
     }
     catch (error) {
         console.error("Error in main execution:", error);

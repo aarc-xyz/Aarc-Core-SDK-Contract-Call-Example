@@ -6,7 +6,8 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "npx tsc && node contract-call-example"
+    "start": "npx tsc && node contract-call-example",
+    "start:polling": "npx tsc && node polling-example"
   },
   "exports": {
     ".": {
