@@ -146,6 +146,7 @@ This script demonstrates the process of performing a cross-chain token transfer 
 
 ### **Sample Logs:**
 ```
+> aarc-core-sdk-examples@1.0.0 start
 > npx tsc && node contract-call-example
 
 Fetching balances...
@@ -158,17 +159,17 @@ Selected token: {
   native_token: false,
   type: 'cryptocurrency',
   is_spam: false,
-  balance: '1092971',
+  balance: '12470196',
   usd_price: 1,
-  amount_required: 0.6949140488718999,
-  amount_required_usd: 0.6949140488718999
+  amount_required: 0.254021821170496,
+  amount_required_usd: 0.254021821170496
 }
 Generating call data...
 Fetching deposit address...
 Deposit address fetched: {
-  requestId: 'efc2786e-c5a5-478f-a90b-c8f848fbbd6f',
+  requestId: 'eab2f03a-0aaf-4b26-9edb-05bf1c54689e',
   status: 'INITIALISED',
-  depositAddress: '0x34E27B730C1d2d424969f47832F6e8F616838AbF',
+  depositAddress: '0x321432bc871f6F40E6Ac7977DfD2Cc57a9752a65',
   onChainID: '8453',
   depositTokenName: 'USD Coin',
   depositTokenSymbol: 'USDC',
@@ -182,13 +183,13 @@ Deposit address fetched: {
     chainId: '8453',
     from: '0xeda8dec60b6c2055b61939dda41e9173bab372b2',
     to: '0x833589fcd6edb6e08f4c7c32d4f71b54bda02913',
-    data: '0xa9059cbb00000000000000000000000034e27b730c1d2d424969f47832f6e8f616838abf00000000000000000000000000000000000000000000000000000000000027a6',     
+    data: '0xa9059cbb000000000000000000000000321432bc871f6f40e6ac7977dfd2cc57a9752a6500000000000000000000000000000000000000000000000000000000000027a6',
     value: '0',
     gasLimit: '75571'
   }
 }
 Executing transaction...
-Transaction hash: 0x134eaf3aac5122d052fe068affde1afc6b4cbc586eda6b89214ab55c679a842e
+Transaction hash: 0x3d4e89e8cd148650c9f701640ba46e3c64359a89c16f0e981c4a4b4f8d86f4d4
 Transaction response:  Response {
   [Symbol(realm)]: null,
   [Symbol(state)]: {
@@ -199,10 +200,10 @@ Transaction response:  Response {
     type: 'default',
     status: 200,
     timingInfo: {
-      startTime: 11856.211999893188,
+      startTime: 7751.5273001194,
       redirectStartTime: 0,
       redirectEndTime: 0,
-      postRedirectStartTime: 11856.211999893188,
+      postRedirectStartTime: 7751.5273001194,
       finalServiceWorkerStartTime: 0,
       finalNetworkResponseStartTime: 0,
       finalNetworkRequestStartTime: 0,
@@ -254,5 +255,51 @@ Transaction response:  Response {
     [Symbol(headers map sorted)]: null
   }
 }
-Transaction completed with hash: 0x134eaf3aac5122d052fe068affde1afc6b4cbc586eda6b89214ab55c679a842e
+Transaction completed with hash: 0x3d4e89e8cd148650c9f701640ba46e3c64359a89c16f0e981c4a4b4f8d86f4d4
+{
+  code: 200,
+  data: {
+    requestId: 'eab2f03a-0aaf-4b26-9edb-05bf1c54689e',
+    status: 'SCHEDULED',
+    transactionSteps: []
+  },
+  message: 'success'
+}
+Polling message: Request is being processed.
+{
+  code: 200,
+  data: {
+    requestId: 'eab2f03a-0aaf-4b26-9edb-05bf1c54689e',
+    status: 'CREATE_AND_FORWARD_PENDING',
+    transactionSteps: []
+  },
+  message: 'success'
+}
+Polling message: Creating and forwarding your request.
+{
+  code: 200,
+  data: {
+    requestId: 'eab2f03a-0aaf-4b26-9edb-05bf1c54689e',
+    status: 'DEPOSIT_COMPLETED',
+    transactionSteps: [ [Object] ]
+  },
+  message: 'success'
+}
+Polling message: Funds received successfully.
+{
+  code: 200,
+  data: {
+    requestId: 'eab2f03a-0aaf-4b26-9edb-05bf1c54689e',
+    status: 'CHECKOUT_COMPLETED',
+    transactionSteps: [ [Object], [Object] ]
+  },
+  message: 'success'
+}
+Polling message: Checkout completed successfully.
+Polling result: {
+  pollStatus: 'success',
+  error: null,
+  hasTimedOut: false,
+  pollingMessage: 'Checkout completed successfully.'
+}
 ```
